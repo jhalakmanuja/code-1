@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --red: #dc2626;
+  --red-dark: #991b1b;
+  --black: #000000;
+  --gray-950: #030712;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #dc2626;
+  border-radius: 0;
+}
+
+/* Selection color */
+::selection {
+  background: #dc2626;
+  color: white;
+}
+
+/* F1-style angled clip utility */
+.clip-angled {
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+/* Speed line animation */
+@keyframes speedLine {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+.animate-speed {
+  animation: speedLine 2s ease-in-out infinite;
+}
+
+/* Heading font utility */
+.font-f1 {
+  font-family: 'Bebas Neue', 'Impact', sans-serif;
+}
