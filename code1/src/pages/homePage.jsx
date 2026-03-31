@@ -55,7 +55,7 @@ export default function HomePage({ onNavigate }) {
   ];
 
   useEffect(() => {
-    const targetDate = new Date('2026-04-11T09:30:00').getTime();
+    const targetDate = new Date('2026-04-10T09:00:00').getTime();
     let timeoutId;
 
     const updateCountdown = () => {

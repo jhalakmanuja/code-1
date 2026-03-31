@@ -212,7 +212,7 @@ const AboutPage = () => {
     { label: 'STAGES_COUNT',  stat: 3,     suffix: '',    desc: 'Progressive race laps from idea to podium', accent: '#dc2626' },
     { label: 'TRACKS_TOTAL',  stat: 7,     suffix: '',    desc: 'Innovation racing tracks across tech domains', accent: '#f97316' },
     { label: 'TEAM_SIZE_MAX', stat: 4,     suffix: '+',   desc: 'Members per team — diverse skill wins races', accent: '#3b82f6' },
-    { label: 'FINAL_DATE',    stat: '11\nAPR', suffix: '', desc: 'Offline hackathon at ADGIPS East Delhi', accent: '#8b5cf6', isText: true },
+    { label: 'FINAL_DATE',    stat: '10\nAPR', suffix: '', desc: 'Offline hackathon at ADGIPS East Delhi', accent: '#8b5cf6', isText: true },
     { label: 'STREAMS_OPEN',  stat: 'ALL', suffix: '',    desc: 'Open to engineering, arts, commerce & sciences', accent: '#22c55e', isText: true },
     { label: 'PRIZE_POOL',    stat: 'TBA', suffix: '',    desc: 'Podium prizes, goodies, swags & recognition', accent: '#eab308', isText: true },
   ];
@@ -233,7 +233,7 @@ const AboutPage = () => {
     {
       icon: <Users className="w-7 h-7"/>, tag: 'How it works', title: 'Grid Up',
       accent: '#3b82f6',
-      description: 'Form a team, choose your track, submit your PPT, survive shortlisting, and race to build your prototype at the offline finale on April 11.',
+      description: 'Form a team, choose your track, submit your PPT, survive shortlisting, and race to build your prototype at the offline finale on April 10.',
       points: ['Team: 2–4 members', 'PPT deadline: 31 March 2026', 'Mentoring and Judging: 4 April 2026', 'Final race: 10 April 2026'],
     },
   ];

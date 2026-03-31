@@ -7,46 +7,46 @@ import { Trophy, Flag, Users, Star, Crown, Medal, ChevronDown, ChevronUp, Zap, A
 const RESULTS = {
   winner: {
     position: 1,
-    team: 'NullPointers',
-    track: 'Firewall Grand Prix',
-    project: 'CipherShield — Real-time threat detection using ML anomaly models',
-    members: ['Aryan Mehta', 'Sneha Gupta', 'Rahul Verma'],
-    score: 96,
+    team: 'TBA',
+    track: 'TBA',
+    project: 'TBA',
+    members: ['TBA', 'TBA', 'TBA'],
+    score: '??',
     badge: 'Champion',
   },
   runnerUp: {
     position: 2,
-    team: 'ByteForce',
-    track: 'FinTech Fast Lane',
-    project: 'PayRoute — Offline-first UPI payment mesh for rural India',
-    members: ['Priya Singh', 'Karan Joshi', 'Aditya Roy', 'Meera Nair'],
-    score: 91,
+    team: 'TBA',
+    track: 'TBA',
+    project: 'TBA',
+    members: ['TBA', 'TBA', 'TBA', 'TBA'],
+    score: '??',
     badge: 'Runner-Up',
   },
   third: {
     position: 3,
-    team: 'GridLockers',
-    track: 'Formula 1 Track',
-    project: 'PitSync — Real-time strategy dashboard for motorsport teams',
-    members: ['Dev Sharma', 'Tanvi Patel', 'Nikhil Das'],
-    score: 88,
+    team: 'TBA',
+    track: 'TBA',
+    project: 'TBA',
+    members: ['TBA', 'TBA', 'TBA'],
+    score: '??',
     badge: 'Third Place',
   },
 };
 
 const ALL_TEAMS = [
-  { team: 'NullPointers',    track: 'Firewall Grand Prix',       members: ['Aryan Mehta','Sneha Gupta','Rahul Verma'],                   rank: 1  },
-  { team: 'ByteForce',       track: 'FinTech Fast Lane',         members: ['Priya Singh','Karan Joshi','Aditya Roy','Meera Nair'],        rank: 2  },
-  { team: 'GridLockers',     track: 'Formula 1 Track',           members: ['Dev Sharma','Tanvi Patel','Nikhil Das'],                      rank: 3  },
-  { team: 'StackOverflow',   track: 'Smart City Speedway',       members: ['Yash Kumar','Anjali Rao','Rohan Bose'],                       rank: 4  },
-  { team: 'BitRunners',      track: 'Rapid Response Racing',     members: ['Isha Malhotra','Saurav Singh','Deepak Nair'],                 rank: 5  },
-  { team: 'HexCode',         track: 'Sustainable Speed Circuit', members: ['Pooja Tiwari','Amit Sharma','Lakshmi V'],                     rank: 6  },
-  { team: 'DataPilots',      track: 'Smart City Speedway',       members: ['Vikram Roy','Swati Jain','Mohit Pandey','Prateek Das'],       rank: 7  },
-  { team: 'ZeroIndex',       track: 'Wildcard Innovation Lap',   members: ['Nandita Sen','Arjun Kapoor','Riya Mehta'],                    rank: 8  },
-  { team: 'AlphaNodes',      track: 'FinTech Fast Lane',         members: ['Chirag Patel','Divya Gupta'],                                 rank: 9  },
-  { team: 'CodeRedTeam',     track: 'Firewall Grand Prix',       members: ['Simran Batra','Gaurav Nair','Ankita Das'],                    rank: 10 },
-  { team: 'SyntaxSurgeons',  track: 'Rapid Response Racing',     members: ['Rohit Mishra','Kavya Pillai'],                               rank: 11 },
-  { team: 'RaceCondition',   track: 'Formula 1 Track',           members: ['Abhishek Roy','Tanya Sharma','Neil Fernandez','Samar Khan'], rank: 12 },
+  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 1  },
+  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA', 'TBA'],      rank: 2  },
+  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 3  },
+  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 4  },
+  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 5  },
+  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 6  },
+  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA', 'TBA'],      rank: 7  },
+  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 8  },
+  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA'],                    rank: 9  },
+  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 10 },
+  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA'],                    rank: 11 },
+  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA', 'TBA'],      rank: 12 },
 ];
 
 /* ══════════════════════════════════════════════
@@ -93,7 +93,7 @@ const podiumConfig = {
   3: { height:'h-28 md:h-32', icon:<Medal className="w-7 h-7"/>,   glow:'#f97316', label:'3RD', order:'order-3' },
 };
 
-const PodiumBlock = ({ data, confettiTrigger }) => {
+const PodiumBlock = ({ data }) => {
   const cfg = podiumConfig[data.position];
   const [hov, setHov] = useState(false);
   return (
@@ -268,7 +268,7 @@ const ResultsPage = () => {
         {/* ── HEADER ── */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 border border-red-800/40 bg-red-950/20 px-4 py-1.5 mb-6 text-red-400 text-[10px] font-bold uppercase tracking-[0.2em]">
-            <Zap className="w-3 h-3 animate-pulse"/>Race Complete · 10 April 2026
+            <Zap className="w-3 h-3 animate-pulse"/>Results · Coming Soon
           </div>
 
           <div className="relative mb-4">
@@ -283,7 +283,7 @@ const ResultsPage = () => {
           </div>
 
           <p className="text-gray-400 text-lg max-w-xl mx-auto">
-            The checkered flag has dropped. Here are the teams that crossed the finish line.
+            The checkered flag is almost here. Results will be announced soon — stay tuned.
           </p>
         </div>
 
@@ -316,10 +316,10 @@ const ResultsPage = () => {
         {/* ── SPECIAL AWARDS ── */}
         <div className="mb-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {[
-            { award:'Best F1 Track Build',  team:'RaceCondition',  icon:'🏎️', color:'#dc2626' },
-            { award:'Best Innovation',      team:'ZeroIndex',      icon:'💡', color:'#f97316' },
-            { award:'Best UI/UX',           team:'AlphaNodes',     icon:'🎨', color:'#3b82f6' },
-            { award:'Best Social Impact',   team:'BitRunners',     icon:'🌍', color:'#22c55e' },
+            { award:'Best F1 Track Build',  team:'TBA', icon:'🏎️', color:'#dc2626' },
+            { award:'Best Innovation',      team:'TBA', icon:'💡', color:'#f97316' },
+            { award:'Best UI/UX',           team:'TBA', icon:'🎨', color:'#3b82f6' },
+            { award:'Best Social Impact',   team:'TBA', icon:'🌍', color:'#22c55e' },
           ].map((a,i) => (
             <div key={i} className="relative border bg-[#080808] p-5 hover:border-opacity-80 transition-all duration-400 group overflow-hidden"
               style={{ borderColor:`${a.color}33` }}>
