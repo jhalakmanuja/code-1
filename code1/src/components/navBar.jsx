@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Flag, Trophy } from 'lucide-react';
 import { Link } from "react-router-dom";
+import code1Logo from '../assets/code1.png';
 
 /* ═══════════════════════════════════════════════════════════════
    F1 CAR CURSOR
@@ -103,8 +104,8 @@ const Navbar = ({ onNavigate }) => {
   aria-label="Go to home page"
 >
   <img
-    src="/src/assets/code1.png"
-    alt="CODE1 Logo"
+    src={code1Logo}   // ← was: src="/src/assets/code1.png"
+  alt="CODE1 Logo"
     className="h-10 w-auto object-contain group-hover:opacity-80 transition-opacity duration-300"
   />
 </button>

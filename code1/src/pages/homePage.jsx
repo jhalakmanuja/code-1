@@ -124,6 +124,7 @@ export default function HomePage({ onNavigate }) {
           autoPlay
           loop
           playsInline
+          muted 
           className="absolute inset-0 w-full h-full object-cover z-0"
           style={{ filter: 'brightness(0.45) saturate(1.2)' }}
         >
