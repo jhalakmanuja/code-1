@@ -96,23 +96,18 @@ const Navbar = ({ onNavigate }) => {
 
           {/* ── Logo → Home ── */}
           <button
-            type="button"
-            onClick={handleLogoClick}
-            className="flex items-center flex-shrink-0 gap-2 group bg-transparent border-0 p-0"
-            style={{ cursor: CURSOR_URI }}
-            aria-label="Go to home page"
-          >
-            <Flag className="w-7 h-7 text-red-500 group-hover:text-red-400 transition-colors" />
-            <span
-              className="font-black text-2xl tracking-widest text-white group-hover:text-red-400 transition-colors"
-              style={{
-                fontFamily: "'Bebas Neue','Impact',sans-serif",
-                letterSpacing: '0.15em',
-              }}
-            >
-              CODE<span className="text-red-500">1</span>
-            </span>
-          </button>
+  type="button"
+  onClick={handleLogoClick}
+  className="flex items-center flex-shrink-0 group bg-transparent border-0 p-0"
+  style={{ cursor: CURSOR_URI }}
+  aria-label="Go to home page"
+>
+  <img
+    src="/src/assets/code1.png"
+    alt="CODE1 Logo"
+    className="h-10 w-auto object-contain group-hover:opacity-80 transition-opacity duration-300"
+  />
+</button>
 
           {/* ── Desktop nav links ── */}
           <div className="hidden lg:flex flex-1 justify-center px-4">

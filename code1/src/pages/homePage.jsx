@@ -3,11 +3,20 @@ import { ChevronRight, MapPin, Calendar, Flag, Minus, Plus, Timer, Users, Zap, T
 import Navbar from '../components/navBar';
 
 // Asset imports
-import mainbg from '../assets/mainbg.mp4';
 import car1 from '../assets/car1.png';
 import car2 from '../assets/car2.png';
 import car3 from '../assets/car3.png';
 import CollazonLogo from '../assets/Collazon.png';
+
+// ✅ FIXED: Sponsor images imported properly so Vite bundles them correctly
+import unstopLogo from '../assets/Unstop.jpg';
+import xyzLogo from '../assets/xyz.webp';
+import digimationLogo from '../assets/digimationflight.jpg';
+import uptoSkillsLogo from '../assets/UptoSkills.webp';
+import edubukLogo from '../assets/edubuklogo.png';
+
+// ✅ FIXED: mainbg.mp4 removed from assets import.
+// Move mainbg.mp4 into your /public folder and reference it as '/mainbg.mp4' below.
 
 export default function HomePage({ onNavigate }) {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -109,7 +118,8 @@ export default function HomePage({ onNavigate }) {
       {/* ── HERO SECTION ── */}
       <section className="relative min-h-screen overflow-hidden border-b border-red-500/20">
 
-        {/* Video Background */}
+        {/* ✅ FIXED: Video src now points to /public/mainbg.mp4 — no import needed.
+            Make sure you move mainbg.mp4 from src/assets/ into the /public folder. */}
         <video
           autoPlay
           loop
@@ -117,7 +127,7 @@ export default function HomePage({ onNavigate }) {
           className="absolute inset-0 w-full h-full object-cover z-0"
           style={{ filter: 'brightness(0.45) saturate(1.2)' }}
         >
-          <source src={mainbg} type="video/mp4" />
+          <source src="/mainbg.mp4" type="video/mp4" />
         </video>
 
         {/* Dark overlay */}
@@ -345,15 +355,13 @@ export default function HomePage({ onNavigate }) {
             CHOOSE YOUR <span className="text-yellow-400">RACING CIRCUIT</span>
           </h2>
           <p className="text-gray-400 text-base sm:text-lg mb-8 sm:mb-12">
-            7 innovation tracks. 1 special Formula 1 challenge. Pick your lane.
+            6 innovation tracks + 1 special Formula 1 challenge.<br /> Pick your lane.
           </p>
           <button
             onClick={() => {
               if (typeof onNavigate === 'function') {
-                // Try all common keys the App router might use
                 onNavigate('tracks');
               }
-              // Also update hash so any hash-based router picks it up
               window.location.hash = '#tracks';
             }}
             className="relative px-10 py-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-black text-xl rounded-lg hover:scale-105 transition-transform group"
@@ -396,11 +404,11 @@ export default function HomePage({ onNavigate }) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
             {[
-              { src: '/src/assets/Unstop.jpg',           alt: 'Unstop',           name: 'UNSTOP'           },
-              { src: '/src/assets/xyz.webp',             alt: '.xyz',             name: '.XYZ'             },
-              { src: '/src/assets/digimationflight.jpg', alt: 'Digimation Flight',name: 'DIGIMATION FLIGHT'},
-              { src: '/src/assets/UptoSkills.webp',      alt: 'UptoSkills',       name: 'UPTOSKILLS'       },
-              { src: '/src/assets/edubuklogo.png',       alt: 'Edubuk',           name: 'EDUBUK'           },
+              { src: unstopLogo,    alt: 'Unstop',            name: 'UNSTOP'            },
+              { src: xyzLogo,       alt: '.xyz',              name: '.XYZ'              },
+              { src: digimationLogo,alt: 'Digimation Flight', name: 'DIGIMATION FLIGHT' },
+              { src: uptoSkillsLogo,alt: 'UptoSkills',        name: 'UPTOSKILLS'        },
+              { src: edubukLogo,    alt: 'Edubuk',            name: 'EDUBUK'            },
             ].map((s) => (
               <div key={s.name} className="racing-card min-h-[160px] sm:min-h-[180px] px-6 sm:px-8 py-6 sm:py-8 flex flex-col items-center justify-center text-center bg-black/70 border border-white/10">
                 <img src={s.src} alt={s.alt} className="h-24 sm:h-32 w-40 sm:w-48 object-contain mb-3 sm:mb-4" />
@@ -455,7 +463,7 @@ export default function HomePage({ onNavigate }) {
                   rel="noreferrer"
                   className="flex items-center gap-2 text-gray-400 hover:text-red-400 transition-colors font-bold tracking-wide text-sm"
                 >
-                  <img src="/src/assets/Unstop.jpg" alt="Unstop" className="w-5 h-5 object-contain rounded-sm" />
+                  <img src={unstopLogo} alt="Unstop" className="w-5 h-5 object-contain rounded-sm" />
                   Unstop
                 </a>
               </div>
@@ -529,7 +537,7 @@ export default function HomePage({ onNavigate }) {
           <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
             <div className="text-white text-3xl sm:text-4xl font-black tracking-tight">Collazon</div>
             <p className="text-gray-500 text-xs sm:text-sm font-semibold tracking-[0.12em] uppercase">
-              © 2025 CODE 1 Hackathon • Powered by Collazon
+              © 2026 CODE 1 Hackathon • Powered by Collazon
             </p>
           </div>
         </div>
