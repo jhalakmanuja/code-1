@@ -1,56 +1,51 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Trophy, Flag, Users, Star, Crown, Medal, ChevronDown, ChevronUp, Zap, Award } from 'lucide-react';
 
 /* ══════════════════════════════════════════════
-   SAMPLE DATA  — replace with real results
+   ROUND 1 — ALL QUALIFYING TEAMS
 ══════════════════════════════════════════════ */
-const RESULTS = {
-  winner: {
-    position: 1,
-    team: 'TBA',
-    track: 'TBA',
-    project: 'TBA',
-    members: ['TBA', 'TBA', 'TBA'],
-    score: '??',
-    badge: 'Champion',
-  },
-  runnerUp: {
-    position: 2,
-    team: 'TBA',
-    track: 'TBA',
-    project: 'TBA',
-    members: ['TBA', 'TBA', 'TBA', 'TBA'],
-    score: '??',
-    badge: 'Runner-Up',
-  },
-  third: {
-    position: 3,
-    team: 'TBA',
-    track: 'TBA',
-    project: 'TBA',
-    members: ['TBA', 'TBA', 'TBA'],
-    score: '??',
-    badge: 'Third Place',
-  },
-};
-
-const ALL_TEAMS = [
-  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 1  },
-  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA', 'TBA'],      rank: 2  },
-  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 3  },
-  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 4  },
-  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 5  },
-  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 6  },
-  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA', 'TBA'],      rank: 7  },
-  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 8  },
-  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA'],                    rank: 9  },
-  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA'],             rank: 10 },
-  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA'],                    rank: 11 },
-  { team: 'TBA', track: 'TBA', members: ['TBA', 'TBA', 'TBA', 'TBA'],      rank: 12 },
+const ROUND1_TEAMS = [
+  "404 Brain Not Found","AlgoAces","All izz well","AnonymousX","Astra",
+  "BEROZGAR","BRAIN BRO'S","Benx","Big-O Bros","BoxBox","C4Coders",
+  "CLOUDEATER","CYBER PANKHE","CYBER_WARRIORS","Champ_ions","CipherNova",
+  "Cloud Fairies","Code Beetles","Code Carnage","Code Garage","Code crew",
+  "CodeApex","Cogniforge","Ctrl Alt Elite","DHURANDARS","DRISHTI",
+  "Dark Knight","Debuggers","Deeprust","Errorist Rebels","Feedback",
+  "Git Happens","Global Scopes","HACKERS","HackElte","HackX","Hacksmiths",
+  "Hands2Voice","HarTime Error","IKAGI","Kira's Logic","LordHyphen",
+  "NEXT STEP","NOVA","Naan Stop Coders","NayayCoders","Nova Squad",
+  "PIT CREW","PaneerCoders","Paradox","PixelPulse","Psycho coders",
+  "QUAD INNOVATORS","Quadradar","RB19","Rajma Chawal","Runtime errors",
+  "Sarva","Shift-Ctrl-Speed","Solitaire","Stranger Strings","Sudarshan coders",
+  "Super Nova","Syntax Error","TEAM JAVABUGS","TEAM VAJRA","Team Aegis5IEGE",
+  "Team Compilers","Team Ferrari","Team McLearn","Team Rocket","Team StrawHats",
+  "Tech Chaos","Tech Horizon","Termin8ors","TerminalX","The Fall Off",
+  "VIRTUS","Veloci vector","Vintage","Weasels & Co.","X-Pirates",
+  "Zenith171","codeXwin","coder_zenin","must_be_the_water","pixel pirates",
+  "seasaw","vada pav"
 ];
 
 /* ══════════════════════════════════════════════
-   CONFETTI BURST
+   ROUND 2 — TOP 25 TEAMS (TBA)
+══════════════════════════════════════════════ */
+const ROUND2_TEAMS = Array.from({ length: 25 }, (_, i) => ({
+  rank: i + 1,
+  team: 'TBA',
+  track: 'TBA',
+  score: '??',
+}));
+
+/* ══════════════════════════════════════════════
+   PODIUM DATA
+══════════════════════════════════════════════ */
+const RESULTS = {
+  winner: { position: 1, team: 'TBA', track: 'TBA', project: 'TBA', members: ['TBA', 'TBA', 'TBA'], score: '??', badge: 'Champion' },
+  runnerUp: { position: 2, team: 'TBA', track: 'TBA', project: 'TBA', members: ['TBA', 'TBA', 'TBA', 'TBA'], score: '??', badge: 'Runner-Up' },
+  third: { position: 3, team: 'TBA', track: 'TBA', project: 'TBA', members: ['TBA', 'TBA', 'TBA'], score: '??', badge: 'Third Place' },
+};
+
+/* ══════════════════════════════════════════════
+   CONFETTI
 ══════════════════════════════════════════════ */
 const Confetti = ({ active }) => {
   if (!active) return null;
@@ -64,22 +59,11 @@ const Confetti = ({ active }) => {
   }));
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {pieces.map((p,i) => (
+      {pieces.map((p, i) => (
         <div key={i} className="absolute rounded-sm"
-          style={{
-            left:`${p.x}%`, top:'-10px',
-            width: p.size, height: p.size,
-            background: p.color,
-            transform: `rotate(${p.rot}deg)`,
-            animation: `confettiFall ${p.dur}s ${p.delay}s ease-in forwards`,
-          }} />
+          style={{ left:`${p.x}%`, top:'-10px', width:p.size, height:p.size, background:p.color, transform:`rotate(${p.rot}deg)`, animation:`confettiFall ${p.dur}s ${p.delay}s ease-in forwards` }}/>
       ))}
-      <style>{`
-        @keyframes confettiFall {
-          0%   { transform: translateY(0) rotate(0deg); opacity:1; }
-          100% { transform: translateY(100vh) rotate(720deg); opacity:0; }
-        }
-      `}</style>
+      <style>{`@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}`}</style>
     </div>
   );
 };
@@ -99,162 +83,59 @@ const PodiumBlock = ({ data }) => {
   return (
     <div className={`flex flex-col items-center ${cfg.order}`}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
-      {/* Team card floating above */}
       <div className="relative mb-3 w-52 md:w-60 text-center">
         <Confetti active={hov} />
-        {/* Glow ring */}
         <div className="absolute inset-0 rounded-sm transition-opacity duration-500"
-          style={{ boxShadow: `0 0 40px ${cfg.glow}${hov?'55':'22'}`, opacity: hov ? 1 : 0.4 }} />
-
+          style={{ boxShadow:`0 0 40px ${cfg.glow}${hov?'55':'22'}`, opacity:hov?1:0.4 }}/>
         <div className="relative border bg-[#080808] p-5 transition-all duration-500"
-          style={{
-            borderColor: hov ? cfg.glow : '#1c1c1c',
-            transform: hov && data.position === 1 ? 'scale(1.05)' : 'scale(1)',
-            boxShadow: hov ? `0 0 30px ${cfg.glow}30` : 'none',
-          }}>
-          <div className="absolute top-0 inset-x-0 h-[2px]" style={{ background: cfg.glow }} />
-
-          <div style={{ color: cfg.glow }} className="flex justify-center mb-3">{cfg.icon}</div>
-
-          <div className="text-[9px] font-bold uppercase tracking-[0.2em] mb-1"
-            style={{ color: cfg.glow, fontFamily:"'Courier New',monospace" }}>
-            {data.badge}
-          </div>
-
-          <div className="text-2xl font-black text-white mb-1" style={{ fontFamily:"'Bebas Neue','Impact',sans-serif" }}>
-            {data.team}
-          </div>
+          style={{ borderColor:hov?cfg.glow:'#1c1c1c', transform:hov&&data.position===1?'scale(1.05)':'scale(1)', boxShadow:hov?`0 0 30px ${cfg.glow}30`:'none' }}>
+          <div className="absolute top-0 inset-x-0 h-[2px]" style={{ background:cfg.glow }}/>
+          <div style={{ color:cfg.glow }} className="flex justify-center mb-3">{cfg.icon}</div>
+          <div className="text-[9px] font-bold uppercase tracking-[0.2em] mb-1" style={{ color:cfg.glow, fontFamily:"'Courier New',monospace" }}>{data.badge}</div>
+          <div className="text-2xl font-black text-white mb-1" style={{ fontFamily:"'Bebas Neue','Impact',sans-serif" }}>{data.team}</div>
           <div className="text-[10px] text-gray-500 mb-3">{data.track}</div>
-
-          {/* Score */}
-          <div className="text-4xl font-black leading-none mb-2" style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color: cfg.glow }}>
-            {data.score}
-            <span className="text-base text-gray-600">/100</span>
+          <div className="text-4xl font-black leading-none mb-2" style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color:cfg.glow }}>
+            {data.score}<span className="text-base text-gray-600">/100</span>
           </div>
-
-          {/* Members */}
           <div className="mt-3 space-y-1">
-            {data.members.map((m,i) => (
+            {data.members.map((m,i)=>(
               <div key={i} className="text-[11px] text-gray-400 flex items-center gap-1.5">
-                <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: cfg.glow }} />{m}
+                <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background:cfg.glow }}/>{m}
               </div>
             ))}
           </div>
         </div>
       </div>
-
-      {/* Podium step */}
       <div className={`w-52 md:w-60 ${cfg.height} flex items-start justify-center pt-4 transition-all duration-500`}
-        style={{
-          background: `linear-gradient(180deg, ${cfg.glow}22 0%, #0a0a0a 100%)`,
-          border: `1px solid ${hov ? cfg.glow : '#222'}`,
-          borderBottom:'none',
-        }}>
-        <span className="font-black text-6xl md:text-7xl" style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color:`${cfg.glow}30` }}>
-          {cfg.label}
-        </span>
+        style={{ background:`linear-gradient(180deg, ${cfg.glow}22 0%, #0a0a0a 100%)`, border:`1px solid ${hov?cfg.glow:'#222'}`, borderBottom:'none' }}>
+        <span className="font-black text-6xl md:text-7xl" style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color:`${cfg.glow}30` }}>{cfg.label}</span>
       </div>
     </div>
   );
 };
 
 /* ══════════════════════════════════════════════
-   TEAM GRID CARD
+   SECTION DIVIDER
 ══════════════════════════════════════════════ */
-const rankStyle = (rank) => {
-  if (rank === 1) return { border:'#dc2626', accent:'#dc2626', bg:'rgba(220,38,38,0.06)' };
-  if (rank === 2) return { border:'#9ca3af', accent:'#9ca3af', bg:'rgba(156,163,175,0.05)' };
-  if (rank === 3) return { border:'#f97316', accent:'#f97316', bg:'rgba(249,115,22,0.06)' };
-  return { border:'#1c1c1c', accent:'#555', bg:'transparent' };
-};
-
-const TeamCard = ({ data }) => {
-  const [open, setOpen] = useState(false);
-  const s = rankStyle(data.rank);
-  return (
-    <div className="border bg-[#080808] overflow-hidden transition-all duration-300 hover:border-red-800/50 cursor-pointer"
-      style={{ borderColor: open ? s.border : s.border === '#1c1c1c' ? '#1c1c1c' : s.border, background: s.bg }}
-      onClick={() => setOpen(!open)}>
-      {/* rank top bar */}
-      <div className="h-[2px]" style={{ background: s.accent }} />
-
-      <div className="px-4 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            {/* Rank number */}
-            <span className="font-black text-3xl leading-none w-10 flex-shrink-0"
-              style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color: s.accent }}>
-              {String(data.rank).padStart(2,'0')}
-            </span>
-            <div>
-              <div className="text-white font-black text-base leading-tight" style={{ fontFamily:"'Bebas Neue','Impact',sans-serif" }}>
-                {data.team}
-              </div>
-              <div className="text-gray-600 text-[10px] uppercase tracking-wider">{data.track}</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] text-gray-600" style={{ fontFamily:"'Courier New',monospace" }}>
-              {data.members.length} members
-            </span>
-            {open ? <ChevronUp className="w-4 h-4 text-gray-600"/> : <ChevronDown className="w-4 h-4 text-gray-600"/>}
-          </div>
-        </div>
-
-        {/* Members expand */}
-        <div className="overflow-hidden transition-all duration-400" style={{ maxHeight: open ? 200 : 0, opacity: open ? 1 : 0 }}>
-          <div className="mt-4 pt-4 border-t border-gray-900">
-            <div className="text-[9px] text-gray-600 uppercase tracking-widest mb-2" style={{ fontFamily:"'Courier New',monospace" }}>
-              CODE1 // TEAM_MEMBERS
-            </div>
-            <div className="grid grid-cols-2 gap-1.5">
-              {data.members.map((m,i) => (
-                <div key={i} className="flex items-center gap-1.5 text-xs text-gray-400">
-                  <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: s.accent }} />{m}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-/* ══════════════════════════════════════════════
-   LIVE LEADERBOARD TICKER
-══════════════════════════════════════════════ */
-const LeaderTicker = () => {
-  const top5 = ALL_TEAMS.slice(0,5);
-  const repeated = [...top5,...top5,...top5];
-  return (
-    <div className="overflow-hidden border-y border-red-900/20 bg-black py-2 mb-16">
-      <div className="flex gap-16 whitespace-nowrap" style={{ animation:'ticker 20s linear infinite' }}>
-        {repeated.map((t,i) => (
-          <span key={i} className="text-[10px] font-black uppercase tracking-widest text-gray-600 flex items-center gap-2 flex-shrink-0">
-            <span className="text-red-500">P{t.rank}</span> {t.team}
-            <span className="text-gray-800">·</span>
-          </span>
-        ))}
-      </div>
-      <style>{`@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}`}</style>
-    </div>
-  );
-};
+const SectionLabel = ({ label }) => (
+  <div className="flex items-center gap-3 mb-2 justify-center">
+    <div className="h-px w-16 bg-red-900/30"/>
+    <span className="text-red-500 text-[10px] font-bold uppercase tracking-[0.2em]">{label}</span>
+    <div className="h-px w-16 bg-red-900/30"/>
+  </div>
+);
 
 /* ══════════════════════════════════════════════
    MAIN PAGE
 ══════════════════════════════════════════════ */
 const ResultsPage = () => {
-  const [filter, setFilter] = useState('All');
-  const tracks = ['All', ...Array.from(new Set(ALL_TEAMS.map(t=>t.track)))];
-  const filtered = filter === 'All' ? ALL_TEAMS : ALL_TEAMS.filter(t => t.track === filter);
+  const [r1Search, setR1Search] = useState('');
+  const filtered1 = ROUND1_TEAMS.filter(t => t.toLowerCase().includes(r1Search.toLowerCase()));
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Grid bg */}
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage:`linear-gradient(rgba(220,38,38,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,0.04) 1px,transparent 1px)`, backgroundSize:'60px 60px' }} />
-
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage:`linear-gradient(rgba(220,38,38,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,0.04) 1px,transparent 1px)`, backgroundSize:'60px 60px' }}/>
       {/* Concentric rings */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden flex justify-center" style={{ top:'-20%' }}>
         {[900,720,540,360].map((r,i)=>(
@@ -266,11 +147,10 @@ const ResultsPage = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
 
         {/* ── HEADER ── */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 border border-red-800/40 bg-red-950/20 px-4 py-1.5 mb-6 text-red-400 text-[10px] font-bold uppercase tracking-[0.2em]">
             <Zap className="w-3 h-3 animate-pulse"/>Results · Coming Soon
           </div>
-
           <div className="relative mb-4">
             <h1 className="font-black leading-none text-[clamp(4rem,16vw,12rem)] pointer-events-none select-none"
               style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color:'rgba(220,38,38,0.06)', position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center' }}>
@@ -281,100 +161,137 @@ const ResultsPage = () => {
               RACE <span className="text-red-600">RESULTS</span>
             </h1>
           </div>
-
           <p className="text-gray-400 text-lg max-w-xl mx-auto">
             The checkered flag is almost here. Results will be announced soon — stay tuned.
           </p>
         </div>
 
-        {/* ── TICKER ── */}
-        <LeaderTicker />
+        {/* ══════════════════════════════════════════════
+            ROUND 1 — QUALIFYING LAP
+        ══════════════════════════════════════════════ */}
+        <div className="mb-28">
+          <SectionLabel label="Round 1" />
+          <h2 className="text-4xl md:text-5xl font-black text-white text-center mb-3"
+            style={{ fontFamily:"'Bebas Neue','Impact',sans-serif" }}>
+            QUALIFYING <span className="text-red-600">LAP</span>
+          </h2>
+          <p className="text-center text-gray-500 text-sm mb-15 tracking-wide">
+            All teams that entered the race — <span className="text-white font-bold">{ROUND1_TEAMS.length} squads</span> on the grid
+          </p>
 
-        {/* ── PODIUM ── */}
-        <div className="mb-24">
-          <div className="flex items-center gap-3 mb-2 justify-center">
-            <div className="h-px w-16 bg-red-900/30"/>
-            <span className="text-red-500 text-[10px] font-bold uppercase tracking-[0.2em]">Podium Finish</span>
-            <div className="h-px w-16 bg-red-900/30"/>
+          {/* Search */}
+          <div className="relative max-w-sm mx-auto mb-8">
+            <input
+              type="text"
+              placeholder="Search team..."
+              value={r1Search}
+              onChange={e => setR1Search(e.target.value)}
+              className="w-full bg-transparent border border-gray-800 focus:border-red-700 outline-none px-4 py-2 text-sm text-white placeholder-gray-700 transition-colors duration-200"
+              style={{ fontFamily:"'Courier New',monospace" }}
+            />
+            <span className="absolute right-3 top-2.5 text-[10px] text-gray-700" style={{ fontFamily:"'Courier New',monospace" }}>
+              {filtered1.length}/{ROUND1_TEAMS.length}
+            </span>
           </div>
+
+          {/* Team name grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+            {filtered1.map((name, i) => (
+              <div key={i}
+                className="border border-gray-900 bg-[#060606] px-3 py-2.5 flex items-center gap-2 group hover:border-red-900/50 transition-all duration-200">
+                <div className="w-1 h-1 rounded-full bg-red-700 flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity"/>
+                <span className="text-[11px] text-gray-400 group-hover:text-white transition-colors leading-tight" style={{ fontFamily:"'Courier New',monospace" }}>
+                  {name}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {filtered1.length === 0 && (
+            <p className="text-center text-gray-700 text-sm mt-6">No teams match your search.</p>
+          )}
+        </div>
+
+        {/* ══════════════════════════════════════════════
+            ROUND 2 — STRATEGY LAP
+        ══════════════════════════════════════════════ */}
+        <div className="mb-28">
+          <SectionLabel label="Round 2" />
+          <h2 className="text-4xl md:text-5xl font-black text-white text-center mb-3"
+            style={{ fontFamily:"'Bebas Neue','Impact',sans-serif" }}>
+            STRATEGY <span className="text-red-600">LAP</span>
+          </h2>
+          <p className="text-center text-gray-500 text-sm mb-10 tracking-wide">
+            Top <span className="text-white font-bold">25 selected teams</span> advancing to the final lap
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {ROUND2_TEAMS.map((t) => {
+              const isTop3 = t.rank <= 3;
+              const accentColor = t.rank === 1 ? '#dc2626' : t.rank === 2 ? '#9ca3af' : t.rank === 3 ? '#f97316' : '#2a2a2a';
+              return (
+                <div key={t.rank}
+                  className="border bg-[#060606] overflow-hidden transition-all duration-300 hover:border-red-900/40"
+                  style={{ borderColor: isTop3 ? accentColor : '#161616' }}>
+                  <div className="h-[2px]" style={{ background: isTop3 ? accentColor : '#1c1c1c' }}/>
+                  <div className="px-4 py-4 flex items-center gap-4">
+                    <span className="font-black text-4xl leading-none w-12 flex-shrink-0 text-right"
+                      style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color: isTop3 ? accentColor : '#2a2a2a' }}>
+                      {String(t.rank).padStart(2,'0')}
+                    </span>
+                    <div className="flex-1">
+                      <div className="text-white font-black text-base leading-tight mb-0.5"
+                        style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color: isTop3 ? accentColor : '#555' }}>
+                        {t.team}
+                      </div>
+                      <div className="text-gray-700 text-[10px] uppercase tracking-wider">{t.track}</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xl font-black" style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color: isTop3 ? accentColor : '#333' }}>
+                        {t.score}
+                      </div>
+                      <div className="text-[9px] text-gray-700" style={{ fontFamily:"'Courier New',monospace" }}>/100</div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-8 border border-dashed border-red-900/20 p-5 text-center">
+            <p className="text-[11px] text-gray-600 uppercase tracking-widest" style={{ fontFamily:"'Courier New',monospace" }}>
+              // Round 2 selections will be revealed after judging
+            </p>
+          </div>
+        </div>
+
+
+        {/* ══════════════════════════════════════════════
+            PODIUM — CHAMPIONS
+        ══════════════════════════════════════════════ */}
+        <div className="mb-16">
+          <SectionLabel label="Champions" />
           <h2 className="text-4xl md:text-5xl font-black text-white text-center mb-12"
             style={{ fontFamily:"'Bebas Neue','Impact',sans-serif" }}>
-            THE CHAMPIONS
+            THE <span className="text-red-600">CHAMPIONS</span>
           </h2>
 
-          {/* Podium */}
           <div className="flex items-end justify-center gap-2 md:gap-4">
             <PodiumBlock data={RESULTS.runnerUp} />
             <PodiumBlock data={RESULTS.winner} />
             <PodiumBlock data={RESULTS.third} />
           </div>
-
-          {/* Podium base */}
           <div className="h-3 bg-gradient-to-b from-gray-900 to-black border-t border-gray-800 mx-4"/>
         </div>
 
-        {/* ── SPECIAL AWARDS ── */}
-        <div className="mb-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {[
-            { award:'Best F1 Track Build',  team:'TBA', icon:'🏎️', color:'#dc2626' },
-            { award:'Best Innovation',      team:'TBA', icon:'💡', color:'#f97316' },
-            { award:'Best UI/UX',           team:'TBA', icon:'🎨', color:'#3b82f6' },
-            { award:'Best Social Impact',   team:'TBA', icon:'🌍', color:'#22c55e' },
-          ].map((a,i) => (
-            <div key={i} className="relative border bg-[#080808] p-5 hover:border-opacity-80 transition-all duration-400 group overflow-hidden"
-              style={{ borderColor:`${a.color}33` }}>
-              <div className="absolute top-0 inset-x-0 h-[2px]" style={{ background: a.color }}/>
-              <div className="text-3xl mb-3">{a.icon}</div>
-              <div className="text-[9px] uppercase tracking-widest mb-1"
-                style={{ color: a.color, fontFamily:"'Courier New',monospace" }}>Special Award</div>
-              <div className="text-white font-bold text-sm mb-1">{a.award}</div>
-              <div className="text-xl font-black" style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color: a.color }}>
-                {a.team}
-              </div>
-            </div>
-          ))}
+        {/* Bottom note */}
+        <div className="mt-16 border border-gray-900 p-6 text-center">
+          <Award className="w-8 h-8 text-red-600 mx-auto mb-3"/>
+          <p className="text-gray-500 text-sm max-w-lg mx-auto">
+            All participating teams receive a <span className="text-white font-bold">Certificate of Participation</span> from Collazon. Reach out via WhatsApp or email to claim yours.
+          </p>
         </div>
 
-        {/* ── ALL TEAMS ── */}
-        <div>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="h-px flex-1 bg-red-900/30"/>
-            <span className="text-red-500 text-[10px] font-bold uppercase tracking-[0.2em]">All Finalists</span>
-            <div className="h-px flex-1 bg-red-900/30"/>
-          </div>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
-            <h2 className="text-4xl font-black text-white" style={{ fontFamily:"'Bebas Neue','Impact',sans-serif" }}>
-              FULL GRID — <span className="text-red-600">{ALL_TEAMS.length} TEAMS</span>
-            </h2>
-            {/* Filter */}
-            <div className="flex flex-wrap gap-2">
-              {['All','Formula 1 Track','FinTech Fast Lane','Firewall Grand Prix'].map(f => (
-                <button key={f} onClick={() => setFilter(f)}
-                  className="text-[10px] px-3 py-1.5 font-bold uppercase tracking-widest border transition-all duration-200"
-                  style={{
-                    borderColor: filter===f ? '#dc2626' : '#1c1c1c',
-                    background: filter===f ? 'rgba(220,38,38,0.15)' : 'transparent',
-                    color: filter===f ? '#dc2626' : '#555',
-                  }}>
-                  {f}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Click-to-expand team cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {filtered.map((t,i) => <TeamCard key={i} data={t}/>)}
-          </div>
-
-          {/* Bottom note */}
-          <div className="mt-10 border border-gray-900 p-6 text-center">
-            <Award className="w-8 h-8 text-red-600 mx-auto mb-3"/>
-            <p className="text-gray-500 text-sm max-w-lg mx-auto">
-              All participating teams receive a <span className="text-white font-bold">Certificate of Participation</span> from Collazon. Reach out via WhatsApp or email to claim yours.
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   );

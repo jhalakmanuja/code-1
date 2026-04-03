@@ -4,7 +4,9 @@ import sa from '../assets/srishti_aggarwal.jpeg';
 import rs from '../assets/rishabh_singh.jpeg';
 import rb from '../assets/riddhi_bansal.jpeg';
 import jm from '../assets/Jhalak.jpeg';
-
+import ak from '../assets/akshatsharma.png';
+import nk from '../assets/nikunj.png';
+import rv from '../assets/raunakvats.png';
 const SectionLabel = ({ text }) => (
   <div className="flex items-center gap-3 mb-3">
     <div className="h-px flex-1 bg-red-800/40" />
@@ -19,15 +21,15 @@ const teamMembers = [
     designation: 'Founder',
     photo: sa,
     bio: 'Leading Collazon ⚡ Where ideas meet opportunity',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/srishti-aggarwal-055592236?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
     initials: 'SA',
   },
   {
     name: 'Akshat Sharma',
     designation: 'Technical Lead',
-    photo: null,
+    photo: ak,
     bio: 'Designing the race stages, managing teams, and ensuring every lap runs smoothly.',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/akshat-sharma-159b79326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
     initials: 'AS',
   },
   {
@@ -35,7 +37,7 @@ const teamMembers = [
     designation: 'Content Lead',
     photo: null,
     bio: 'Building the infrastructure that powers CODE 1 — from platform to submissions.',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/ambika-jain-900389268?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
     initials: 'AJ',
   },
   {
@@ -43,7 +45,7 @@ const teamMembers = [
     designation: 'Event Management Lead',
     photo: jm,
     bio: 'Managing chaos to deliver seamless hackathon experiences',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/jhalak-manuja-450361284?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
     initials: 'JM',
   },
   {
@@ -63,25 +65,25 @@ const teamMembers = [
     initials: 'MC',
   },
   {
-    name: 'Nikunj',
+    name: 'Nikunj Aggarwal',
     designation: 'Management Lead',
-    photo: null,
-    bio: 'Securing partnerships and building relationships that fuel the prize pool.',
-    linkedin: '#',
+    photo: nk,
+    bio: 'I turn complex event ideas into seamless realities.',
+    linkedin: 'www.linkedin.com/in/frostys',
     initials: 'N',
   },
   {
     name: 'Rishabh Singh',
     designation: 'Management Lead',
     photo: rs,
-    bio: 'Securing partnerships and building relationships that fuel the prize pool.',
+    bio: 'Strategy in mind, leadership in action.',
     linkedin: '#',
     initials: 'RS',
   },
   {
     name: 'Raunak Vats',
     designation: 'Management Lead',
-    photo: null,
+    photo: rv,
     bio: 'Securing partnerships and building relationships that fuel the prize pool.',
     linkedin: '#',
     initials: 'RV',
