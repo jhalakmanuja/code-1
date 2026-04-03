@@ -22,7 +22,7 @@ const ROUND1_TEAMS = [
   "Tech Chaos","Tech Horizon","Termin8ors","TerminalX","The Fall Off",
   "VIRTUS","Veloci vector","Vintage","Weasels & Co.","X-Pirates",
   "Zenith171","codeXwin","coder_zenin","must_be_the_water","pixel pirates",
-  "seasaw","vada pav"
+  "seasaw","vada pav","Midnight Builders"
 ];
 
 /* ══════════════════════════════════════════════
@@ -162,7 +162,7 @@ const ResultsPage = () => {
             </h1>
           </div>
           <p className="text-gray-400 text-lg max-w-xl mx-auto">
-            The checkered flag is almost here. Results will be announced soon — stay tuned.
+            The checkered flag is almost here. Results of Round-1: Qualifying Lap are announced.
           </p>
         </div>
 
