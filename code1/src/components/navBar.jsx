@@ -208,20 +208,20 @@ const Navbar = ({ onNavigate }) => {
             </a>
 
             {/* Mobile Results */}
-            <a
-              href="#results"
-              className="block w-full mt-2 font-black uppercase tracking-widest text-center px-6 py-3 border border-yellow-700/60 flex items-center justify-center gap-2 transition-all hover:bg-yellow-900/20"
-              style={{
-                background: 'rgba(120,53,15,0.3)',
-                color: '#fde68a',
-                cursor: CURSOR_URI,
-              }}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <Trophy className="w-4 h-4" />
-              Race Results
-              <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
-            </a>
+            <Link
+  to="/results"
+  className="block w-full mt-2 font-black uppercase tracking-widest text-center px-6 py-3 border border-yellow-700/60 flex items-center justify-center gap-2 transition-all hover:bg-yellow-900/20"
+  style={{
+    background: 'rgba(120,53,15,0.3)',
+    color: '#fde68a',
+    cursor: CURSOR_URI,
+  }}
+  onClick={() => setIsMenuOpen(false)}
+>
+  <Trophy className="w-4 h-4" />
+  Race Results
+  <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
+</Link>
           </div>
         </div>
       )}
