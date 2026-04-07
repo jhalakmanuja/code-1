@@ -22,26 +22,49 @@ const ROUND1_TEAMS = [
   "Tech Chaos","Tech Horizon","Termin8ors","TerminalX","The Fall Off",
   "VIRTUS","Veloci vector","Vintage","Weasels & Co.","X-Pirates",
   "Zenith171","codeXwin","coder_zenin","must_be_the_water","pixel pirates",
-  "seasaw","vada pav","Midnight Builders"
+  "seasaw","vada pav","Midnight Builders","Noodle Dosa"
 ];
 
 /* ══════════════════════════════════════════════
-   ROUND 2 — TOP 25 TEAMS (TBA)
+   ROUND 2 — TOP 27 TEAMS
 ══════════════════════════════════════════════ */
-const ROUND2_TEAMS = Array.from({ length: 25 }, (_, i) => ({
-  rank: i + 1,
-  team: 'TBA',
-  track: 'TBA',
-  score: '??',
-}));
+const ROUND2_TEAMS = [
+  { rank: 1,  team: 'Noodle Dosa',      track: 'TBA', score: '??' },
+  { rank: 2,  team: 'Solitaire',        track: 'TBA', score: '??' },
+  { rank: 3,  team: 'HackElte',         track: 'TBA', score: '??' },
+  { rank: 4,  team: 'Stranger Strings', track: 'TBA', score: '??' },
+  { rank: 5,  team: 'AnonymousX',       track: 'TBA', score: '??' },
+  { rank: 6,  team: 'HackX',            track: 'TBA', score: '??' },
+  { rank: 7,  team: 'Team McLearn',     track: 'TBA', score: '??' },
+  { rank: 8,  team: 'C4Coders',         track: 'TBA', score: '??' },
+  { rank: 9,  team: 'BoxBox',           track: 'TBA', score: '??' },
+  { rank: 10, team: 'TEAM JAVABUGS',    track: 'TBA', score: '??' },
+  { rank: 11, team: 'vada pav',         track: 'TBA', score: '??' },
+  { rank: 12, team: 'HarTime Error',    track: 'TBA', score: '??' },
+  { rank: 13, team: 'Big-O Bros',       track: 'TBA', score: '??' },
+  { rank: 14, team: 'X-Pirates',        track: 'TBA', score: '??' },
+  { rank: 15, team: 'All izz well',     track: 'TBA', score: '??' },
+  { rank: 16, team: 'DRISHTI',          track: 'TBA', score: '??' },
+  { rank: 17, team: 'CYBER PANKHE',     track: 'TBA', score: '??' },
+  { rank: 18, team: 'Errorist Rebels',  track: 'TBA', score: '??' },
+  { rank: 19, team: 'LordHyphen',       track: 'TBA', score: '??' },
+  { rank: 20, team: 'CodeApex',         track: 'TBA', score: '??' },
+  { rank: 21, team: 'Pitwall AI',       track: 'TBA', score: '??' },
+  { rank: 22, team: 'Green Ledger',     track: 'TBA', score: '??' },
+  { rank: 23, team: 'Hands2Voice',      track: 'TBA', score: '??' },
+  { rank: 24, team: 'Ctrl Alt Elite',   track: 'TBA', score: '??' },
+  { rank: 25, team: 'Naan Stop Coders', track: 'TBA', score: '??' },
+  { rank: 26, team: 'Team Aegis5IEGE',  track: 'TBA', score: '??' },
+  { rank: 27, team: 'Veloci vector',    track: 'TBA', score: '??' },
+];
 
 /* ══════════════════════════════════════════════
    PODIUM DATA
 ══════════════════════════════════════════════ */
 const RESULTS = {
-  winner: { position: 1, team: 'TBA', track: 'TBA', project: 'TBA', members: ['TBA', 'TBA', 'TBA'], score: '??', badge: 'Champion' },
+  winner:   { position: 1, team: 'TBA', track: 'TBA', project: 'TBA', members: ['TBA', 'TBA', 'TBA'], score: '??', badge: 'Champion' },
   runnerUp: { position: 2, team: 'TBA', track: 'TBA', project: 'TBA', members: ['TBA', 'TBA', 'TBA', 'TBA'], score: '??', badge: 'Runner-Up' },
-  third: { position: 3, team: 'TBA', track: 'TBA', project: 'TBA', members: ['TBA', 'TBA', 'TBA'], score: '??', badge: 'Third Place' },
+  third:    { position: 3, team: 'TBA', track: 'TBA', project: 'TBA', members: ['TBA', 'TBA', 'TBA'], score: '??', badge: 'Third Place' },
 };
 
 /* ══════════════════════════════════════════════
@@ -175,7 +198,7 @@ const ResultsPage = () => {
             style={{ fontFamily:"'Bebas Neue','Impact',sans-serif" }}>
             QUALIFYING <span className="text-red-600">LAP</span>
           </h2>
-          <p className="text-center text-gray-500 text-sm mb-15 tracking-wide">
+          <p className="text-center text-gray-500 text-sm mb-10 tracking-wide">
             All teams that entered the race — <span className="text-white font-bold">{ROUND1_TEAMS.length} squads</span> on the grid
           </p>
 
@@ -222,55 +245,28 @@ const ResultsPage = () => {
             STRATEGY <span className="text-red-600">LAP</span>
           </h2>
           <p className="text-center text-gray-500 text-sm mb-10 tracking-wide">
-            Top <span className="text-white font-bold">25 selected teams</span> advancing to the final lap
+            Top <span className="text-white font-bold">27 selected teams</span> advancing to the final lap
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {ROUND2_TEAMS.map((t) => {
-              const isTop3 = t.rank <= 3;
-              const accentColor = t.rank === 1 ? '#dc2626' : t.rank === 2 ? '#9ca3af' : t.rank === 3 ? '#f97316' : '#2a2a2a';
-              return (
-                <div key={t.rank}
-                  className="border bg-[#060606] overflow-hidden transition-all duration-300 hover:border-red-900/40"
-                  style={{ borderColor: isTop3 ? accentColor : '#161616' }}>
-                  <div className="h-[2px]" style={{ background: isTop3 ? accentColor : '#1c1c1c' }}/>
-                  <div className="px-4 py-4 flex items-center gap-4">
-                    <span className="font-black text-4xl leading-none w-12 flex-shrink-0 text-right"
-                      style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color: isTop3 ? accentColor : '#2a2a2a' }}>
-                      {String(t.rank).padStart(2,'0')}
-                    </span>
-                    <div className="flex-1">
-                      <div className="text-white font-black text-base leading-tight mb-0.5"
-                        style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color: isTop3 ? accentColor : '#555' }}>
-                        {t.team}
-                      </div>
-                      <div className="text-gray-700 text-[10px] uppercase tracking-wider">{t.track}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-xl font-black" style={{ fontFamily:"'Bebas Neue','Impact',sans-serif", color: isTop3 ? accentColor : '#333' }}>
-                        {t.score}
-                      </div>
-                      <div className="text-[9px] text-gray-700" style={{ fontFamily:"'Courier New',monospace" }}>/100</div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+            {ROUND2_TEAMS.map((t) => (
+              <div key={t.rank}
+                className="border border-gray-900 bg-[#060606] px-3 py-2.5 flex items-center gap-2 group hover:border-red-900/50 transition-all duration-200">
+                <div className="w-1 h-1 rounded-full bg-red-700 flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity"/>
+                <span className="text-[11px] text-gray-400 group-hover:text-white transition-colors leading-tight" style={{ fontFamily:"'Courier New',monospace" }}>
+                  {t.team}
+                </span>
+              </div>
+            ))}
           </div>
 
-          <div className="mt-8 border border-dashed border-red-900/20 p-5 text-center">
-            <p className="text-[11px] text-gray-600 uppercase tracking-widest" style={{ fontFamily:"'Courier New',monospace" }}>
-              // Round 2 selections will be revealed after judging
-            </p>
-          </div>
         </div>
-
 
         {/* ══════════════════════════════════════════════
             PODIUM — CHAMPIONS
         ══════════════════════════════════════════════ */}
         <div className="mb-16">
-          <SectionLabel label="Champions" />
+          <SectionLabel label="Round 3" />
           <h2 className="text-4xl md:text-5xl font-black text-white text-center mb-12"
             style={{ fontFamily:"'Bebas Neue','Impact',sans-serif" }}>
             THE <span className="text-red-600">CHAMPIONS</span>
